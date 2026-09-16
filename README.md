@@ -1,67 +1,45 @@
-# Community Engagement & University Partnerships Dashboard
+# Community Engagement and University Partnerships Dashboard
 
-An Excel analytics project that converts a 100-record synthetic partnership dataset into an executive dashboard, supporting summary tables, charts, and a concise findings section.
-
-![Dashboard preview](screenshots/dashboard.png)
+An end-to-end Excel analytics project that converts 100 synthetic university-community partnership records into an executive dashboard with formula-linked KPIs, summary tables, filters, number formats, and charts.
 
 ## Business questions
 
-The workbook answers five practical questions:
-
-1. How many partnerships, participants, and student volunteers are represented?
-2. How much funding is associated with the partnerships?
-3. Which university departments and partnership types receive the most activity and funding?
-4. Which impact areas reach the most participants?
-5. What does the satisfaction data suggest about overall program performance?
+- How many partnerships, participants, and student volunteers are represented?
+- How much funding is associated with the portfolio?
+- Which departments and impact areas account for the most activity?
+- What does satisfaction data indicate about overall program performance?
 
 ## Headline results
 
 | Metric | Result |
-| --- | ---: |
+|---|---:|
 | Partnerships | 100 |
-| Participants engaged | 25,363 |
+| Participants | 25,363 |
 | Student volunteers | 3,736 |
 | Total funding | $12,478,642 |
 | Average satisfaction | 4.06 / 5.00 |
 
-Additional findings:
+## Start-to-finish workflow
 
-- Technology Access reached 4,597 participants, the largest reach among the impact areas.
-- Environmental Sciences received approximately $2.06 million, the highest departmental funding total.
-- Health Initiative was the most common partnership type, with 14 partnerships.
+1. Generate a deterministic 100-record synthetic partnership dataset.
+2. Preserve one row per partnership with department, partnership type, impact area, participants, volunteers, funding, and satisfaction.
+3. Build formula-linked KPI totals and category summaries.
+4. Apply filters, validation-friendly formatting, and appropriate number formats.
+5. Add charts for funding by department and participants by impact area.
+6. Reconcile all dashboard KPIs to the source table.
 
-## Workbook design
+## Rebuild the workbook
 
-The project is organized into three layers:
+```bash
+python -m venv .venv
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python build_dashboard.py
+```
 
-- `Partnership_Data`: the 100-row source table.
-- `Summary_Tables`: calculated KPI and category summaries used by the dashboard.
-- `Dashboard`: five headline KPI cards, two charts, and a plain-language findings section.
+The script writes `Community_Engagement_Dashboard.xlsx`. Detailed instructions are in `BUILD.md`; field definitions are in `DATA_DICTIONARY.md`; quality controls are in `VALIDATION.md`.
 
-The workbook uses Excel PivotTable-style summaries, lookup and validation logic, structured tables, number formatting, and charts to make the analysis reviewable by nontechnical stakeholders.
+## Data and limitations
 
-## Reproduce the analysis
+All records are synthetic and contain no real student, employee, university, or community-partner information. The project demonstrates Excel analytics and reporting practices and should not be interpreted as an official university report.
 
-1. Download [`workbook/Adithya_Community_Engagement_Dashboard.xlsx`](workbook/Adithya_Community_Engagement_Dashboard.xlsx).
-2. Open it in Microsoft Excel.
-3. Review the source records in `Partnership_Data`.
-4. Trace the totals and category summaries in `Summary_Tables`.
-5. Compare those results with the KPI cards, charts, and findings on `Dashboard`.
-6. Change a source record and refresh the workbook summaries to validate how the dashboard responds.
-
-## Validation performed
-
-- Confirmed 100 unique partnership IDs.
-- Reconciled participants, volunteers, funding, and average satisfaction to the source table.
-- Checked department, partnership-type, and impact-area summaries against the source categories.
-- Reviewed number formats, chart labels, and dashboard layout for readability.
-
-See [VALIDATION.md](VALIDATION.md) and [DATA_DICTIONARY.md](DATA_DICTIONARY.md) for the control record and field definitions.
-
-## Data note
-
-The workbook uses a synthetic portfolio dataset created for a community-engagement analysis exercise. It contains no confidential university records or personal contact information.
-
-## Tools
-
-Microsoft Excel, PivotTables, XLOOKUP, data validation, charts, descriptive analysis, and executive reporting.
